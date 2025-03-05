@@ -1,0 +1,123 @@
+Based on the provided survey draft, here is a structured question with options that resolves dependencies and maintains logical flow:
+
+---
+
+**S0.05** Are you, or is any member of your household, affiliated with a pharmaceutical company, healthcare company, advertising agency, or the FDA as a primary clinical investigator, consultant, or researcher?
+
+- Yes
+- No
+
+[IF S0.05 = YES, TERMINATE]
+
+---
+
+**S0.10** Please select the primary state in which you practice.
+
+- [List of States]
+- Vermont (VT)
+
+[IF STATE = VERMONT (VT), TERMINATE]
+
+---
+
+**S0.20** Which of the following best describes your profile?
+
+- Physician (MD or DO)
+- Nurse Practitioner (NP)
+- Physician Assistant (PA)
+- Registered Nurse (RN)
+- Nurse Navigator / Care Coordinator
+- Nurse Educator
+- Other [FORCE WRITE-IN]
+
+[TERMINATE IF S0.20 <> Physician, RN, Nurse Educator]
+
+---
+
+**S0.30** [IF S0.20 = Physician] Which of the following most closely describes your primary specialty?
+
+- Primary Care
+- Dermatology
+- Pathology
+- Surgery
+- Oncology
+- Neurology
+- Other [FORCE WRITE-IN]
+
+[TERMINATE IF S0.30 <> {Oncology, Pathology}]
+
+---
+
+**S0.31** [IF S0.30 = Oncology] Which most closely aligns to your oncology specialty?
+
+- Hematology-Oncology
+- Medical Oncology
+- Urological Oncology
+- Surgical Oncology
+- Gynecologic Oncology
+- Internal Medicine with Secondary Specialty in Oncology
+- Radiation Oncology
+- Pediatric Oncology
+- Other [FORCE WRITE-IN]
+
+[TERMINATE IF S0.31 <> {Hematology-Oncology, Medical Oncology, Gynecologic Oncology}]
+
+---
+
+**S0.32** [IF S0.30 = Pathology] Which most closely aligns to your pathology specialty?
+
+- General pathology
+- Gynecologic pathology
+- Anatomical pathology
+- Surgical pathology
+- Hematopathology
+- Medical microbiology
+- Other [FORCE WRITE-IN]
+
+[TERMINATE IF S0.32 <> {General pathology, Gynecologic pathology}]
+
+---
+
+**S0.40** [IF S0.20 = Physician (MD or DO)] Are you currently board-certified or board-eligible in your area of specialty?
+
+- Board-certified
+- Board-eligible
+- Neither
+
+[IF S0.40 <> CERTIFIED, TERMINATE]
+
+---
+
+**S0.45** [IF S0.20 = Physician (MD or DO)] How many years have you practiced in this specialty post-residency? If less than a year, please enter “1”.
+
+[IF S0.45 < 3 or > 30, TERMINATE]
+
+---
+
+**S0.50** Which of the below best describes the setting in which you practice?
+
+- University owned/affiliated [ACADEMIC]
+- Non-university owned/affiliated teaching [COMMUNITY]
+- Non-teaching [COMMUNITY]
+- Commercial Laboratory [ASK ONLY IF S0.30 = Pathology]
+- Non-Commercial centralized reference laboratory [ASK ONLY IF S0.30 = Pathology]
+- Other [FORCE WRITE-IN]
+
+[IF S0.50 = Others, THANK and TERMINATE]
+
+---
+
+**S0.55** Which of the below best describes the institution in which you practice?
+
+- Dedicated cancer institute (i.e., prospective payment system-exempt, free-standing cancer institute)
+- Integrated delivery network (i.e., multispecialty system with integrated hospital and affiliated payer component)
+- Health system
+- Large physician group (i.e., oncology-focused outpatient clinic with centralized decision-making)
+- Small community practice (i.e., privately-owned oncology practice with no defined system affiliation)
+- None of the above
+
+[IF S0.55 = None of the above, THANK and TERMINATE]
+
+---
+
+This structured question set ensures that dependencies are resolved, and the flow of the survey is logical and coherent.

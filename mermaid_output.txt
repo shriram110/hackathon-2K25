@@ -1,0 +1,37 @@
+graph TD
+    S0.10[Which of the following best describes your professional title?]
+    S0.10 -->|MD| S0.20[What is your primary medical specialty?]
+    S0.10 -->|Not MD| Terminate1[Thank and Terminate]
+    
+    S0.20 -->|Dermatology| S0.30[Are you board-certified or board-eligible in your primary specialty?]
+    S0.20 -->|Not Dermatology| Terminate1
+    
+    S0.30 -->|Certified| S0.40[What is the ZIP code of your primary practice location?]
+    S0.30 -->|Not Certified| Terminate1
+    
+    S0.40 -->|Valid ZIP| S0.45[Which best describes the location of your primary practice?]
+    S0.40 -->|First two digits 05| Terminate1
+    
+    S0.45 -->|Urban/major metro area| S0.50[How many years have you practiced in your specialty, post-residency?]
+    S0.45 -->|Suburban| S0.50
+    S0.45 -->|Rural| S0.50
+    
+    S0.50 -->|3-30 years| S0.80[On average, what percentage of your clinical practice time is spent in direct patient care?]
+    S0.50 -->|<3 or >30 years| Terminate1
+    
+    S0.80 -->|>=50%| S0.90[What percentage of your total prescriptions are obtained through the buy-and-bill process?]
+    S0.80 -->|<50%| Terminate1
+    
+    S0.90 -->|<=50%| S0.100[In the past 3 months, how many adult patients with the following conditions have you personally treated or managed?]
+    S0.90 -->|>50%| Terminate1
+    
+    S0.100 -->|PsO>=20| S0.110[For your adult plaque psoriasis patients, how would you categorize them based on disease severity?]
+    S0.100 -->|PsO<20| Terminate1
+    
+    S0.110 -->|Moderate+Severe>=15| S0.140[ZOOMRX CONSENT FOR MARKET RESEARCH]
+    S0.110 -->|Moderate+Severe<15| Terminate2[Thank and Terminate at the end of Screener]
+    
+    S0.140 -->|Proceed| BP.IN[Thank you, Doctor. You qualify for our study. Please click next to continue.]
+    S0.140 -->|Do not proceed| Terminate1
+    
+    Terminate1 --> BP.OUT[Unfortunately, based on your answers you do not fall into a segment approved to take this survey. We will notify you of future surveys for which your segment is approved to participate. Thank you for your interest.]
