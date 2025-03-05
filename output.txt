@@ -1,0 +1,119 @@
+Based on the provided survey draft, here is a structured question with options, resolving dependencies and ensuring logical flow:
+
+---
+
+**Section 0: Screener**
+
+**S0.10** Which of the following best describes your professional title?
+
+- Doctor (MD)
+- Nurse Practitioner (NP)
+- Physician Assistant (PA)
+- Registered Nurse (RN)
+- Other [FORCE WRITE-IN]
+
+*[IF S0.10 ≠ MD, THANK AND TERMINATE IMMEDIATELY]*
+
+---
+
+**S0.20** What is your primary medical specialty?
+
+- Dermatology
+- Allergy/Immunology
+- Pulmonology
+- Family Medicine or General Practice
+- Internal Medicine
+- Rheumatology
+- Other [FORCE WRITE-IN]
+
+*[IF S0.20 ≠ DERMATOLOGY, THANK AND TERMINATE IMMEDIATELY]*
+
+---
+
+**S0.30** Are you board-certified or board-eligible in your primary specialty?
+
+- Board-certified
+- Board-eligible
+- Neither certified nor eligible
+
+*[IF S0.30 ≠ CERTIFIED, THANK AND TERMINATE IMMEDIATELY]*
+
+---
+
+**S0.40** What is the ZIP code of your primary practice location?
+
+- [Text Box for 5-digit ZIP code]
+
+*[Only allow 5-digit responses. Show error for all other entries: Please enter a valid 5-digit US ZIP code]*  
+*[IF FIRST TWO DIGITS OF S0.40 are 05, THANK AND TERMINATE IMMEDIATELY (Vermont)]*
+
+---
+
+**S0.45** Which best describes the location of your primary practice?
+
+- Urban/major metro area
+- Suburban
+- Rural
+
+*[SOFT QUOTA OF MINIMUM 40 URBAN AND MINIMUM 40 SUBURBAN/RURAL]*
+
+---
+
+**S0.50** How many years have you practiced in your specialty, post-residency? If less than a year, please enter “1”.
+
+- [Text Box for number of years]
+
+*[IF S0.50 <3 or >30, THANK AND TERMINATE IMMEDIATELY]*
+
+---
+
+**S0.80** On average, what percentage of your clinical practice time is spent in direct patient care?
+
+- [Text Box for percentage]
+
+*[IF S0.80 < 50% FOR ACADEMIC (OR) S0.90 < 70% FOR COMMUNITY OR OTHER, THANK AND TERMINATE IMMEDIATELY]*
+
+---
+
+**S0.90** What percentage of your total prescriptions are obtained through the buy-and-bill process?
+
+- [Text Box for percentage]
+
+*[IF S0.90 >50%, THANK AND TERMINATE IMMEDIATELY]*
+
+---
+
+**S0.100** In the past 3 months, how many adult patients with the following conditions have you personally treated or managed?
+
+- Plaque Psoriasis (PsO): [Text Box for number of patients]
+- Allergic Contact Dermatitis (ACD): [Text Box for number of patients]
+- Atopic Dermatitis (AD): [Text Box for number of patients]
+- Psoriatic Arthritis (PsA): [Text Box for number of patients]
+
+*[IF S0.100_PsO<20, THANK AND TERMINATE IMMEDIATELY]*
+
+---
+
+**S0.110** For your [PIPE S0.100_PsO] adult plaque psoriasis patients you treated or managed over the past 3 months, how would you categorize them based on disease severity?
+
+- Mild - Affects <3% of the body; generally involves isolated patches on the knees, elbows, scalp, hands and feet; has minimal effects on quality of life
+- Moderate - Affects 3 – 10% of the body; generally appears on the arms, torso, scalp and other regions; has a moderate effect on quality of life
+- Severe - Affects >10% of the body; affects large areas of skin; has a severe impact on quality of life
+
+*[FORCE SUM TO S0.100_PsO]*  
+*[IF S0.110_MODERATE+SEVERE PATIENTS<15, THANK AND TERMINATE AT THE END OF SCREENER]*
+
+---
+
+**S0.140** <ZOOMRX CONSENT FOR MARKET RESEARCH>
+
+We wish to confirm your interest in participating in this research. This Participant Agreement (“Agreement”) sets forth the terms and conditions of your participation.
+
+- I would like to proceed to the survey.
+- I do not want to proceed. [THANK AND TERMINATE IMMEDIATELY]
+
+*[IF SCREENED OUT, SHOW THE FOLLOWING TEXT]*  
+BP.OUT Unfortunately, based on your answers you do not fall into a segment approved to take this survey. We will notify you of future surveys for which your segment is approved to participate. Thank you for your interest.
+
+*[IF NOT SCREENED OUT, SHOW THE FOLLOWING TEXT]*  
+BP.IN Thank you, Doctor. You qualify for our study. Please click next to continue.

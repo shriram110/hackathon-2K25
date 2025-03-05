@@ -1,0 +1,55 @@
+flowchart TD
+    S0.10[Which of the following best describes your professional title?]
+    S0.10 -->|Doctor (MD)| S0.20
+    S0.10 -->|Nurse Practitioner (NP), Physician Assistant (PA), Registered Nurse (RN), Other| TERMINATE1[Thank and Terminate]
+
+    S0.20[What is your primary medical specialty?]
+    S0.20 -->|Dermatology| S0.30
+    S0.20 -->|Allergy/Immunology, Pulmonology, Family Medicine or General Practice, Internal Medicine, Rheumatology, Other| TERMINATE2[Thank and Terminate]
+
+    S0.30[Are you board-certified or board-eligible in your primary specialty?]
+    S0.30 -->|Board-certified| S0.40
+    S0.30 -->|Board-eligible, Neither certified nor eligible| TERMINATE3[Thank and Terminate]
+
+    S0.40[What is the ZIP code of your primary practice location?]
+    S0.40 -->|Valid 5-digit ZIP code| S0.45
+    S0.40 -->|Invalid ZIP code| ERROR1[Please enter a valid 5-digit US ZIP code]
+    S0.40 -->|First two digits are 05| TERMINATE4[Thank and Terminate]
+
+    S0.45[Which best describes the location of your primary practice?]
+    S0.45 -->|Urban/major metro area, Suburban, Rural| QUOTA1[Soft Quota: Minimum 40 Urban and Minimum 40 Suburban/Rural] --> S0.50
+
+    S0.50[How many years have you practiced in your specialty, post-residency?]
+    S0.50 -->|3-30 years| S0.80
+    S0.50 -->|<3 or >30 years| TERMINATE5[Thank and Terminate]
+
+    S0.80[On average, what percentage of your clinical practice time is spent in direct patient care?]
+    S0.80 -->|>=50%| S0.90
+    S0.80 -->|<50%| TERMINATE6[Thank and Terminate]
+
+    S0.90[What percentage of your total prescriptions are obtained through the buy-and-bill process?]
+    S0.90 -->|<=50%| S0.100
+    S0.90 -->|>50%| TERMINATE7[Thank and Terminate]
+
+    S0.100[In the past 3 months, how many adult patients with the following conditions have you personally treated or managed?]
+    S0.100 -->|PsO >= 20| S0.110
+    S0.100 -->|PsO < 20| TERMINATE8[Thank and Terminate]
+
+    S0.110[For your adult plaque psoriasis patients, how would you categorize them based on disease severity?]
+    S0.110 -->|Moderate + Severe >= 15| S0.140
+    S0.110 -->|Moderate + Severe < 15| TERMINATE9[Thank and Terminate at the end of Screener]
+
+    S0.140[<ZOOMRX CONSENT FOR MARKET RESEARCH>]
+    S0.140 -->|I would like to proceed to the survey| BP.IN[Thank you, Doctor. You qualify for our study. Please click next to continue.]
+    S0.140 -->|I do not want to proceed| TERMINATE10[Thank and Terminate]
+
+    TERMINATE1 --> BP.OUT[Unfortunately, based on your answers you do not fall into a segment approved to take this survey.]
+    TERMINATE2 --> BP.OUT
+    TERMINATE3 --> BP.OUT
+    TERMINATE4 --> BP.OUT
+    TERMINATE5 --> BP.OUT
+    TERMINATE6 --> BP.OUT
+    TERMINATE7 --> BP.OUT
+    TERMINATE8 --> BP.OUT
+    TERMINATE9 --> BP.OUT
+    TERMINATE10 --> BP.OUT

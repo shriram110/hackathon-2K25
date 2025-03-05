@@ -1,0 +1,586 @@
+S0.05 Are you, or is any member of your household, affiliated with a pharmaceutical company, healthcare company, advertising agency, or the FDA as a primary clinical investigator, consultant, or researcher?	  
+
+Yes  
+
+No  
+
+[IF S.05 = YES, TERMINATE]  
+
+  
+
+S0.10 Please select the primary state in which you practice 
+
+[IF STATE = VERMONT (VT) TERMINATE]  
+
+  
+
+  
+
+S0.20 Which of the following best describes your profile?  
+
+[RANDOMIZE] 
+
+Physician (MD or DO)  
+
+Nurse Practitioner (NP)  
+
+Physician Assistant (PA)  
+
+Registered Nurse  (RN) 
+
+Nurse Navigator / Care Coordinator  
+
+Nurse Educator  
+
+Other [FORCE WRITE-IN]  
+
+[TERMINATE IF S0.20 <>Physician, RN, Nurse Educator]   
+
+  
+
+[IF S0.20 = Physician]  
+
+S0.30 Which of the following most closely describes your primary specialty? 
+
+[RANDOMIZE]  
+
+Primary Care  
+
+Dermatology  
+
+Pathology 
+
+Surgery  
+
+Oncology 
+
+Neurology  
+
+Other [FORCE WRITE-IN]  
+
+[TERMINATE IF S0.30 <> {Oncology, Pathologist}]  
+
+ 
+
+ 
+
+[IF S0.30 = Oncology]  
+
+S0.31 Which most closely aligns to your oncology specialty? 
+[RANDOMIZE] 
+
+Hematology-Oncology 
+
+Medical Oncology  
+
+Urological Oncology  
+
+Surgical Oncology  
+
+Gynecologic Oncology  
+
+Internal Medicine with Secondary Specialty in Oncology  
+
+Radiation Oncology  
+
+Pediatric Oncology  
+
+Other [FORCE WRITE-IN]  
+
+[TERMINATE IF S0.31 <> {Hematology-Oncology, Medical Oncology, Gynecologic Oncology}]  
+
+ 
+
+[IF S0.30 = Pathology]  
+
+S0.32 Which most closely aligns to your pathology specialty? 
+
+[RANDOMIZE] 
+
+General pathology 
+
+Gynecologic pathology 
+
+Anatomical pathology 
+
+Surgical pathology 
+
+Hematopathology 
+
+Medical microbiology 
+
+Other [FORCE WRITE-IN]  
+
+[TERMINATE IF S0.32 <> {General pathology, Gynecologic pathology}] 
+
+ 
+
+[IF S0.20 = Physician (MD or DO)]  
+
+S0.40 Are you currently board-certified or board-eligible in your area of specialty?  
+
+Board-certified  
+
+Board-eligible  
+
+Neither  
+
+[IF S0.40 <> CERTIFIED, TERMINATE]  
+
+  
+
+ 
+
+[IF S0.20 = Physician (MD or DO)]  
+
+S0.45 How many years have you practiced in this specialty post-residency? If less than a year, please enter “1”.  
+
+[IF S0.45 < 3 or > 30, TERMINATE]  
+
+ 
+
+S0.50 Which of the below best describes the setting in which you practice?  
+
+[RANDOMIZE] 
+
+University owned/affiliated  [ACADEMIC]  
+
+Non-university owned/affiliated teaching [COMMUNITY] 
+
+Non-teaching [COMMUNITY] 
+
+Commercial Laboratory  [ASK ONLY IF S0.30 =Pathology]   
+
+Non-Commercial centralized reference laboratory [ASK ONLY IF S0.30 =Pathology]  
+
+Other [FORCE WRITE-IN]  
+
+[IF S0.50 = Others, THANK and TERMINATE]  
+
+ 
+
+ 
+
+ 
+
+S0.55 Which of the below best describes the institution in which you practice? 
+
+Dedicated cancer institute (i.e., prospective payment system-exempt, free-standing cancer institute) 
+
+Integrated delivery network (i.e., multispecialty system with integrated hospital and affiliated payer component) 
+
+Health system 
+
+Large physician group (i.e., oncology-focused outpatient clinic with centralized decision-making) 
+
+Small community practice (i.e., privately-owned oncology practice with no defined system affiliation) 
+
+None of the above  
+
+[IF S0.55 = None of the above, THANK and TERMINATE]  
+
+ 
+
+ 
+
+[ASK ONLY IF S0.20 = RN/Nurse Educator OR S0.30 = Oncology] 
+
+S0.70. What percent of your professional time is spent in clinical practice performing direct patient care as compared with research, administration, or other non-clinical activities?  
+
+  
+
+_____________ % of the time  
+
+[IF S0.70_% of time < 70% FOR COMMUNITY HCP OR IF S0.70_% of time <40% FOR ACADEMIC HCP, THANK AND TERMINATE]  
+
+ 
+
+[ASK ONLY IF S0.30 = Pathology] 
+
+S0.75. What percent of your professional time is spent in sample/test processing, review and interpretation as compared with research, administration, or other non-clinical activities?  
+
+  
+
+_____________ % of the time  
+
+[IF S0.75_% of time < 40% THANK AND TERMINATE]  
+
+ 
+
+[ASK ONLY IF S0.30 = Pathology] 
+
+S0.76. To what extent are you involved in decisions to introduce a new test at your lab, including for tests that are processed in-house and tests that are sent out? 
+
+I am the final decision maker 
+
+I am one of several decision makers 
+
+I consult, advise, and/or make recommendations but do not make the final decision 
+
+I am not involved in these discussions 
+
+[If S0.76 = I am not involved, TERMINATE] 
+
+ 
+
+  
+
+ 
+
+[ASK ONLY IF S0.30 <> Pathology] 
+
+S0.80 To how many advanced/metastatic (i.e., Stage II – IV) ovarian and/or endometrial cancer patients have you personally prescribed systemic therapy in the past 12 months? 
+
+_______ ovarian cancer patients (0 or above) 
+
+_______ endometrial cancer patients (0 or above) 
+
+[Terminate if S0.80 total is less than 30 patients OR ovarian = 0] 
+
+ 
+
+[ASK ONLY IF S0.30 <> Pathology] 
+
+S0.81 To how many platinum-resistant and platinum-sensitive ovarian cancer patients have you personally prescribed systemic therapy or helped to provide care for patients on systemic therapy in the past 12 months? 
+
+ 
+
+_______ 2L+ platinum-resistant ovarian cancer   
+
+_______ 2L+ platinum-sensitive ovarian cancer 
+
+[Terminate IF S0.81 <10 FOR EITHER PLATINUM-RESISTANT OR PLATINUM-SENSITIVE] 
+
+ 
+
+ 
+
+[ASK ONLY IF S0.30 = Pathology] 
+
+S0.85 How many tests related to ovarian and/or endometrial cancer patients have you personally processed, sent out and or reviewed the results for in the past 12 months? 
+
+_______ ovarian cancer related tests (0 or above) 
+
+_______ endometrial cancer related tests (0 or above) 
+
+[Terminate if S0.85 total is less than 30 tests OR ovarian = 0] 
+
+ 
+
+ 
+
+[IF S0.30 = Pathology] 
+
+S0.100 Does your institution have an in-house laboratory for biomarker testing, or do you primarily rely on an external laboratory? 
+
+In-house laboratory 
+
+External laboratory 
+
+Both in-house and external laboratory 
+
+ 
+
+[ASK ONLY IF S0.20 = RN/Nurse Educator OR S0.30 = Oncologist] 
+
+S0.105 Have you ordered, conducted, or reviewed Genetic / Companion Diagnostic (CDx) testing for ovarian cancer patients in the past 12 months? 
+
+Yes 
+
+No 
+
+Not Familiar 
+
+ 
+
+S0.110 Please select your level of familiarity with the below testing? 
+
+ 
+
+List of Tests 
+
+Familiarity 
+
+[RANDOMIZE] 
+
+FOLR1/FRα (Folate Receptor Alpha) 
+
+BRCA1/BRCA2 Mutations 
+
+Trop-2 (IHC) 
+
+HER2 (IHC/FISH) 
+
+[ASK ONLY IF S0.30 = Oncologist] 
+
+I have ordered and review this test regularly  
+
+I have ordered and reviewed this test occasionally  
+
+I am aware of the test but have not ordered it  
+
+I am aware of the test by name only 
+
+I am not aware of the test 
+
+[ASK ONLY IF S0.20 = RN/Nurse Educator] 
+
+I review test results regularly  
+
+I have reviewed test results occasionally  
+
+I am aware of the test but do not review results  
+
+I am aware of the test by name only  
+
+I am not aware of the testing 
+
+[ASK ONLY IF S0.30 = Pathology] 
+
+I process/or send out and review this test regularly  
+
+I have process/sent out and reviewed this test occasionally  
+
+I am aware of this test but have not processed it  at my lab 
+
+I am aware of this test by name only  
+
+I am not aware of this test 
+
+[TERMINATE IF S0.30 = Oncologist OR PATHOLOGIST and SELECTS ‘I am not aware of this test’ FOR BRCA1/BRCA2 Mutations, Trop-2 or HER2 AND HOLD IF ‘I am not aware of this test’ FOR FOLR1/FRα] 
+
+ 
+
+[IF S0.30 = ONC OR IF S0.20 = RN/Nurse Educator] 
+
+S0.120 Please select your level of familiarity with the treatments for ovarian cancer below in your clinical practice?  
+
+ 
+
+List of Treatments 
+
+Familiarity 
+
+[RANDOMIZE] 
+
+Elahere (mirvetuximab soravtansine) 
+
+Lynparza (olaparib)  
+
+Rubraca (rucaparib)  
+
+Zejula (niraparib) 
+
+Avastin (bevacizumab) 
+
+Enhertu (fam-trastuzumab deruxtecan) 
+
+Other [FORCE WRITE IN] 
+
+[ASK ONLY IF S0.30 = Oncologist] 
+
+I am aware of the therapy and use it regularly  
+
+I am aware of the therapy and have used it occasionally  
+
+I am aware of the therapy but have not used it  
+
+I am aware of the therapy by name only  
+
+I am not aware of the therapy 
+
+[ASK ONLY IF S0.20 = RN/Nurse Educator] 
+
+I am aware of the therapy and provide care for patients on it regularly  
+
+I am aware of the therapy and provide care for patients on it occasionally  
+
+I am aware of the therapy but have not provide care for patients on it  
+
+I am aware of the therapy by name only  
+
+I am not aware of the therapy 
+
+[MIX: TARGET RESPONDENT TYPE MIX OF THOSE OCASSIONALY OR REGULAR USERS OF ELAHERE],  
+
+TARGET AT LEAST 4 OR 5 ELAHERE USERS PER RESPONDENT TYPE] 
+
+ 
+
+ 
+
+ 
+
+ 
+
+[IF S0.30 = ONC AND IF S0.120<>’I am not aware of the therapy’] 
+
+S0.125 Which of the following best describes your use of Elahere (mirvetuximab soravtansine) over the next 12 months? 
+
+I expect the number of patients I prescribe Elahere for to increase 
+
+I expect the number of patients I prescribe Elahere for to stay the same 
+
+I expect the number of patients I prescribe Elahere for to decrease 
+
+ 
+
+ 
+
+[IF S0.30 = ONC] 
+
+S0.130 Please review the statements below. Using the scale, please indicate the extent to which you agree with either statement.   
+
+Please use the following scale: 1 = Agreement with the left statement // 4 = Neutral // 7 = Agreement with the right statement.  
+
+ 
+
+ Statement A (1) 
+
+Preference 
+
+Statement B (7) 
+
+I would be reluctant to try a newly approved treatment for ovarian or endometrial cancer patients  
+
+[1-7  RATING]  
+
+I would be among the first to try a newly approved  treatment for ovarian or endometrial cancer patients 
+
+I only order biomarker testing for ovarian or endometrial cancer patients when there is a clear clinical necessity or guideline recommendation 
+
+[1-7  RATING]  
+
+I proactively order biomarker testing for ovarian or endometrial cancer patients to explore all possible treatment options 
+
+I strictly adhere to NCCN guidelines when making treatment decisions for ovarian or endometrial cancer patients 
+
+[1-7  RATING]  
+
+I follow my own clinical judgment and experience rather than strictly adhering to NCCN guidelines when treating ovarian or endometrial cancer patients 
+
+My treatment decisions for ovarian or endometrial cancer patients are primarily based on clinical guidelines and physician expertise 
+
+[1-7  RATING]  
+
+I prioritize patient preferences and quality-of-life considerations when making treatment decisions 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+[IF S0.30 = Pathology] 
+
+S0.131  Please review the statements below. Using the scale, please indicate the extent to which you agree with either statement.   
+
+Please use the following scale: 1 = Agreement with the left statement // 4 = Neutral // 7 = Agreement with the right statement.  
+
+ 
+
+ Statement A (1) 
+
+Preference 
+
+Statement B (7) 
+
+I would be reluctant to process/send out a new biomarker test for ovarian or endometrial cancer patients  
+
+[1-7  RATING]  
+
+I would be among the first to process/send out anew biomarker test for ovarian or endometrial cancer patients 
+
+I only process/send out biomarker testing for ovarian or endometrial cancer patients when there is a clear clinical necessity or guideline recommendation 
+
+[1-7  RATING]  
+
+I proactively process/send out biomarker testing for ovarian or endometrial cancer patients to explore all possible treatment options 
+
+I primarily focus on processing biomarker tests for ovarian or endometrial cancer patients and provide the results to the treating physician without further interpretation 
+
+ 
+
+[1-7  RATING]  
+
+I actively discuss biomarker test findings with treating physicians to ensure the results are interpreted effectively in treatment planning for ovarian or endometrial cancer patients 
+
+I believe my practice or institution provides all the necessary training and information to process/send out biomarker testing for ovarian or endometrial cancer patients 
+
+[1-7  RATING]  
+
+I would like access to additional training and information in order to process/send out biomarker testing for ovarian or endometrial cancer patients 
+
+ 
+
+ 
+
+[IF S0.20 = RN/Nurse Educator] 
+
+S0.132. Please review the statements below. Using the scale, please indicate the extent to which you agree with either statement.   
+
+Please use the following scale: 1 = Agreement with the left statement // 4 = Neutral // 7 = Agreement with the right statement.  
+
+ 
+
+ Statement A (1) 
+
+Preference 
+
+Statement B (7) 
+
+I am not very familiar with the role of biomarker testing in ovarian or endometrial cancer 
+
+[1-7  RATING]  
+
+I have a clear understanding of the role of biomarker testing in ovarian or endometrial cancer 
+
+I see my role as supporting exactly what the physician recommends related to providing care for ovarian or endometrial cancer patients  
+
+[1-7  RATING]  
+
+I believe my role extends beyond supporting physician recommendations when providing care for ovarian or endometrial cancer patients 
+
+I believe my practice or institution provides all the necessary training and information to help me provide optimal patients ovarian or endometrial cancer patients 
+
+[1-7  RATING]  
+
+I would like access to additional training and information to in order to provide optimal care for patients ovarian or endometrial cancer patients 
+
+The physician alone explains biomarker testing results ovarian or endometrial cancer patients 
+
+[1-7  RATING]  
+
+At times, I help explain biomarker testing results to ovarian or endometrial cancer patients 
+
+ 
+
+ 
+
+[Question to screen for respondents open to having this type of discussion] 
+
+S0.140 This research will involve questions to understand your feelings as they relate to the diagnostic process and treatment of ovarian and endometrial cancer patients. Are you comfortable proceeding with this interview? 
+
+Yes  
+
+No 
+
+[IF NO, TERMINATE] 

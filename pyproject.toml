@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "congress-v1-summary-generator"
+version = "0.1.0"
+description = ""
+authors = ["kavinilavan.ravichandran <kavinilavan.ravichandran@zoomrx.com>"]
+readme = "README.md"
+packages = [{include = "congress-v1-summary-generator", from="../" },]
+
+[tool.poetry.dependencies]
+python = "~3.11.3"
+pydantic-settings = "~2.3.0"
+pandas = "~2.2.2"
+openai = "^1.54.4"
+matplotlib = "^3.10.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
