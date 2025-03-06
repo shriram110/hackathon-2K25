@@ -11,29 +11,15 @@ def write_file(file_name, content):
     with open(file_name, "w", encoding="utf-8") as file:
         file.write(content)
 
-def generate_prompt(survey_draft):
-    """Generates the structured prompt for OpenAI call."""
-    return {
-        "role": "user",
-        "content": f"""
-        ###objective
-        Create a proper structured question and option from the given survey draft.
-        Resolve dependencies and provide questions with options.
-        
-        ###instruction
-        DO NOT GIVE ANY COMMENTS OR ADDITIONAL INFOS like prefix text.
-        
-        ###survey draft
-        {survey_draft}
-        """
-    }
+
 
 def process_survey_draft(input_file, output_file):
     """Processes the survey draft and generates structured questions and options."""
     survey_draft = read_file(input_file)
-    prompt = generate_prompt(survey_draft)
+    survey_draft_prompt = read_file("survey_draft_prompt.txt")
+    survey_draft_prompt = survey_draft_prompt.replace("{survey_draft_input}", survey_draft)
     start_time = time.time()
-    output = OpenAIService().call_gpt([prompt])
+    output = OpenAIService().call_gpt([{"role": "user", "content": survey_draft_prompt}])
     print(f"Processing time: {time.time() - start_time} seconds")
     write_file(output_file, output)
     return output
@@ -62,13 +48,13 @@ def generate_mermaid_output(survey_output, base_prompt_file, template_file, outp
 def main():
     """Main execution function."""
     survey_output = process_survey_draft("draft.txt", "output_pet.txt")
-    generate_mermaid_output(
-        survey_output,
-        "mermaid_base_prompt.txt",
-        "flowchart_template.html",
-        "pet_prompt_mermaid.txt",
-        "mermaid_output_pet.html"
-    )
+    # generate_mermaid_output(
+    #     survey_output,
+    #     "mermaid_base_prompt.txt",
+    #     "flowchart_template.html",
+    #     "pet_prompt_mermaid.txt",
+    #     "mermaid_output_pet.html"
+    # )
 
 if __name__ == "__main__":
     main()
