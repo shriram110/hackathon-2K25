@@ -7,7 +7,7 @@ resolve the dependency and give the question and option
 {survey_draft_input}
 
 ### Output format
-- Structured format: Array of json format with the keys {[condition: The condition of the question, question: The question to display, options: all the options in as array, action: Action depending on the options selected, question_label: suggest a suitable question label for the question from the possible question label below]}
+- Structured format: Array of json format with the keys {[condition: The condition of the question, question_id: Id of the question example: S0.30, question: The question to display, options: all the options in as array, action: Action depending on the options selected, question_label: suggest a suitable question label for the question from the possible question label below]}
 - Dont give any other additional text.
 - {
     "TEXT FIELD": [
