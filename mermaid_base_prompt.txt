@@ -1,0 +1,67 @@
+Your job is to create a mermaid js for the given set of survey question this is done to check the survey flow
+
+###instructions
+ - AVOID Parse issue due to paranthesis in label(eg Doctor (MD) should Doctor MD),do not use brackets in labels
+ - AVOID Quotes inside label
+ - flowchart each box should be linked always 
+ - DO NOT APPEND str like ```mermaid at the front and ``` at the end
+ - DO not make **MISTAKE IN GENERATION MERMAID JS**
+ - DO NOT MISS ANY QUESTION PRESENT IN THE INPUT ADDRESS ALL THE QUESTION AND OPTION
+ - Whenever they mention **quota** added it as a **layer in process flow**
+ - 
+
+EVERY QUESTION will have QUESTION CODE(like S0.05) add the question code with question text in flow chart as prefix
+QUESTIONS AND OPTIONS have dependencies with each other for eg S0.05 question options might be depenedent on S0.03 in tha case address them in the workflow chart
+
+###output format
+Return only mermaid.js part no additional info/commentry should be present
+
+
+###sample output
+graph TD
+    S0.10[**S0.10** Which of the following best describes your professional title?] -->|Doctor MD| S0.20
+    S0.10 -->|Nurse Practitioner NP, Physician Assistant PA, Registered Nurse RN, Other| TERMINATE1[Thank and Terminate]
+
+    S0.20[**S0.20** What is your primary medical specialty?] -->|Dermatology| S0.30
+    S0.20 -->|Allergy Immunology, Pulmonology, Family Medicine or General Practice, Internal Medicine, Rheumatology, Other| TERMINATE2[Thank and Terminate]
+
+    S0.30[**S0.30** Are you board-certified or board-eligible in your primary specialty?] -->|Board-certified| S0.40
+    S0.30 -->|Board-eligible, Neither certified nor eligible| TERMINATE3[Thank and Terminate]
+
+    S0.40[**S0.40** What is the ZIP code of your primary practice location?] -->|Valid 5-digit ZIP code| S0.45
+    S0.40 -->|Invalid ZIP code| ERROR1[Please enter a valid 5-digit US ZIP code]
+    S0.40 -->|First two digits are 05 Vermont| TERMINATE4[Thank and Terminate]
+
+    S0.45[**S0.45** Which best describes the location of your primary practice?] -->|Urban major metro area| S0.50
+    S0.45 -->|Suburban| S0.50
+    S0.45 -->|Rural| S0.50
+    S0.45 --> QUOTA1[Soft Quota: Minimum 40 Urban and Minimum 40 Suburban Rural]
+
+    S0.50[**S0.50** How many years have you practiced in your specialty, post-residency?] -->|Valid years 3-30| S0.80
+    S0.50 -->|Less than 3 or more than 30| TERMINATE5[Thank and Terminate]
+
+    S0.80[**S0.80** On average, what percentage of your clinical practice time is spent in direct patient care?] -->|Valid percentage| S0.90
+    S0.80 -->|Less than 50% for Academic| TERMINATE6[Thank and Terminate]
+
+    S0.90[**S0.90** What percentage of your total prescriptions are obtained through the buy-and-bill process?] -->|Valid percentage <=50%| S0.100
+    S0.90 -->|More than 50%| TERMINATE7[Thank and Terminate]
+
+    S0.100[**S0.100** In the past 3 months, how many adult patients with the following conditions have you personally treated or managed?] -->|Plaque Psoriasis PsO >= 20| S0.110
+    S0.100 -->|Plaque Psoriasis PsO < 20| TERMINATE8[Thank and Terminate]
+
+    S0.110[**S0.110** For your adult plaque psoriasis patients, how would you categorize them based on disease severity?] -->|Moderate + Severe >= 15| S0.140
+    S0.110 -->|Moderate + Severe < 15| TERMINATE9[Thank and Terminate]
+
+    S0.140[**S0.140** ZoomRx Consent for Market Research] -->|I would like to proceed to the survey| BP.IN[Thank you, Doctor. You qualify for our study. Please click next to continue.]
+    S0.140 -->|I do not want to proceed| TERMINATE10[Thank and Terminate]
+
+    TERMINATE1 --> BP.OUT[Unfortunately, based on your answers you do not fall into a segment approved to take this survey.]
+    TERMINATE2 --> BP.OUT
+    TERMINATE3 --> BP.OUT
+    TERMINATE4 --> BP.OUT
+    TERMINATE5 --> BP.OUT
+    TERMINATE6 --> BP.OUT
+    TERMINATE7 --> BP.OUT
+    TERMINATE8 --> BP.OUT
+    TERMINATE9 --> BP.OUT
+    TERMINATE10 --> BP.OUT
