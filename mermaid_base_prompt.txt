@@ -3,16 +3,11 @@ Your job is to create a mermaid js for the given set of survey question this is 
 ### instructions
  - AVOID Parse issue due to paranthesis in label(eg Doctor (MD) should Doctor MD),do not use brackets in labels
  - AVOID Quotes inside label
- - flowchart each box should be linked always 
+ - flowchart each box should always be linked 
  - DO NOT APPEND str like ```mermaid at the front and ``` at the end
- - DO not make **MISTAKE IN GENERATION MERMAID JS**
- - DO NOT MISS ANY QUESTION PRESENT IN THE INPUT ADDRESS ALL THE QUESTION AND OPTION
+ - DO NOT MISS ANY QUESTION PRESENT IN THE INPUT, ADDRESS ALL THE QUESTION AND OPTION
  - Whenever they mention **quota** added it as a **layer in process flow**
 
-### Logical changes
- - As the mermaid flowchart has one flow for a option, I want to handle the S0.30 case where if the answer is oncology it has to go to the S0.31, but for S0.70 there is a condition where the S0.30's answer has to be oncology.
- - Handle these types of cases properly
- - Example flow: For 0.70 check the answer of 0.30 is oncology_1 instead of oncology because the answer for 0.30 oncology is already pointed to 0.31
 
 EVERY QUESTION will have QUESTION CODE(like S0.05) add the question code with question text in flow chart as prefix
 QUESTIONS AND OPTIONS have dependencies with each other for eg S0.05 question options might be depenedent on S0.03 in tha case address them in the workflow chart
