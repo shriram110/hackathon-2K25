@@ -45,7 +45,7 @@ class SurveyProcessor:
         start_time = time.time()
         output = self.openai_service.call_gpt([{"role": "user", "content": survey_draft_prompt}])
         print(f"Processing time: {time.time() - start_time} seconds")
-        
+        output = output.replace("```json", "").replace("```", "")
         self.file_handler.write_file(output_file, output)
         return output
 
